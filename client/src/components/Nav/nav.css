@@ -1,0 +1,25 @@
+.nav {
+  background-color: black;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 .5rem
+}
+
+/* .nav__header {} */
+
+.nav__link-list {
+  display: flex;
+  list-style: none;
+}
+
+.nav__link {
+  padding: .5rem;
+  border: 1px solid black;
+}
+
+.nav__link:hover {
+  box-shadow: 0 0 5px 0 hsl(0, 0%, 70%);
+  border: 1px solid white;
+}
