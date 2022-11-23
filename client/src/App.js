@@ -1,8 +1,20 @@
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
+import HomePage from './pages/HomePage/homepage.js';
 
 function App() {
   return (
-    <div>League of Legends API</div>
+    <div>
+      <Router>
+        <Routes>
+          <Route
+            path="/"
+            element={<HomePage />}
+          />
+        </Routes>
+      </Router>
+    </div>
   );
 }
 
