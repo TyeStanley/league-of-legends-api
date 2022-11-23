@@ -1,0 +1,12 @@
+.footer {
+  width: 100%;
+  padding: .7rem;
+  background-color: black;
+  color: white;
+}
+.disclaimer {
+  text-align: center;
+  width: 90%;
+  margin: 0 auto;
+  font-size: .7rem;
+}

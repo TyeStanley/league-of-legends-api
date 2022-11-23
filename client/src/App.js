@@ -7,18 +7,20 @@ import HomePage from './pages/HomePage/homepage.js';
 
 function App() {
   return (
-    <div>
+    <>
       <Nav />
-      <Router>
-        <Routes>
-          <Route
-            path="/"
-            element={<HomePage />}
-          />
-        </Routes>
-      </Router>
+      <main>
+        <Router>
+          <Routes>
+            <Route
+              path="/"
+              element={<HomePage />}
+            />
+          </Routes>
+        </Router>
+      </main>
       <Footer />
-    </div>
+    </>
   );
 }
 
