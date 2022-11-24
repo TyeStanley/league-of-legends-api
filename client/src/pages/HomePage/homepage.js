@@ -5,7 +5,9 @@ export default function homepage() {
 
   return (
     <div className="homepage">
-      homepage
+      <section className="homepage__hero">
+        <div className="homepage__hero-overlay"></div>
+      </section>
     </div>
   )
 }

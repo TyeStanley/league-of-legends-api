@@ -1,4 +1,14 @@
-.homepage {
+/* .homepage {} */
+
+.homepage__hero {
   height: 100vh;
-  background-color: #777;
+  background-image: url("../../assets/homepage-background-image.jpg");
+  background-size: cover;
+  background-position-x: 40%;
+  background-position-y: center;
+}
+
+.homepage__hero-overlay {
+  height: 100%;
+  background-color: hsla(0, 0%, 50%, 0.5);
 }
