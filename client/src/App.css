@@ -16,3 +16,23 @@ body {
   color: white;
   padding: .5em 1em;
 }
+
+.input {
+  border: 1px solid #AAA;
+  outline: none;
+  font-size: inherit;
+  padding: .5em;
+  border-radius: .2em;
+}
+
+.input:focus {
+  border-color: #00AAFF;
+  box-shadow: 0 0 5px 0 #00AAFF;
+}
+
+.select {
+  border: none;
+  outline: none;
+  padding: .5em;
+}
+

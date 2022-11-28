@@ -11,4 +11,53 @@
 .homepage__hero-overlay {
   height: 100%;
   background-color: hsla(0, 0%, 50%, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.homepage__hero-form {
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(180, 180, 180, 0.5);
+  padding: 2rem;
+  border-radius: .5rem;
+  border: 1px solid black;
+}
+
+.homepage__summoner-name-input {
+  border-radius: 10000px;
+  border: 1px solid black;
+}
+
+.homepage__region-and-submit-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: .5rem;
+}
+
+.homepage__region-select {
+  border-bottom-left-radius: 10000px;
+  border-top-left-radius: 10000px;
+  background-color: #000;
+  color: white;
+  border: 1px solid white;
+  width: 30%;
+}
+
+.homepage__submit-btn {
+  border-bottom-right-radius: 10000px;
+  border-top-right-radius: 10000px;
+  background-color: #000;
+  border: 1px solid white;
+  width: 30%;
+}
+
+.homepage__region-select:focus,
+.homepage__region-select:hover,
+.homepage__submit-btn:focus,
+.homepage__submit-btn:hover {
+  box-shadow: 0 0 5px 0 #00AAFF;
+  color: #00AAFF;
+  border-color: #00AAFF;
 }
