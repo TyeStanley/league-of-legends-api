@@ -3,11 +3,32 @@ import './homepage.css';
 
 export default function homepage() {
 
+  function getPlayerStats(summonerName, region) {
+    
+  }
+
+  function handleFormSubmit(e) {
+    if (!e.target.matches('.homepage__submit-btn')) return;
+    e.preventDefault();
+
+    // get summoner name input
+    const summonerName = document.querySelector('.homepage__summoner-name-input').value
+    
+    // assign the text value from select to variable called region
+    const selection = document.querySelector('.homepage__region-select');
+    const region = selection.options[selection.selectedIndex].text;
+    
+    getPlayerStats(summonerName, region);
+  }
+
   return (
     <div className="homepage">
       <section className="homepage__hero">
         <div className="homepage__hero-overlay">
-          <form className="homepage__hero-form">
+          <form
+            className="homepage__hero-form"
+            onClick={handleFormSubmit}
+          >
             <input
               className="input homepage__summoner-name-input"
               type="text"

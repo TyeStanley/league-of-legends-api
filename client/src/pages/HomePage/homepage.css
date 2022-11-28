@@ -42,7 +42,7 @@
   background-color: #000;
   color: white;
   border: 1px solid white;
-  width: 30%;
+  width: 33%;
 }
 
 .homepage__submit-btn {
@@ -50,7 +50,7 @@
   border-top-right-radius: 10000px;
   background-color: #000;
   border: 1px solid white;
-  width: 30%;
+  width: 33%;
 }
 
 .homepage__region-select:focus,
