@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './homepage.css';
+import PlayerStatsPage from '../PlayerStatsPage/playerstatspage.js'
 
-export default function homepage() {
-
-  function getPlayerStats(summonerName, region) {
-    
-  }
+export default function Homepage() {
+  const [accountData, setAccountData] = useState(null);
+  // const [region, setRegion] = useState(null);
+  // const [summonerName, setSummonerName] = useState(null);
+  // const [loading, setLoading] = useState(true);
 
   function handleFormSubmit(e) {
     if (!e.target.matches('.homepage__submit-btn')) return;
@@ -16,10 +17,21 @@ export default function homepage() {
     
     // assign the text value from select to variable called region
     const selection = document.querySelector('.homepage__region-select');
-    const region = selection.options[selection.selectedIndex].text;
+    const region = selection.options[selection.selectedIndex].value;
     
-    getPlayerStats(summonerName, region);
+    fetch(`http://localhost:3001/api/region/${region}/name/${summonerName}`)
+      .then(response => response.json())
+      .then(data => {
+        console.log(data);
+        setAccountData(data);
+      })
+      .catch(error => {
+        console.error('Error fetching data: ', error); 
+      })
   }
+
+  console.log(accountData);
+  if (accountData) return <PlayerStatsPage accountData={accountData} />
 
   return (
     <div className="homepage">
@@ -36,17 +48,17 @@ export default function homepage() {
             />
             <div className="homepage__region-and-submit-container">
               <select className="select homepage__region-select">
-                <option value="NA">NA</option>
-                <option value="EUW">EUW</option>
-                <option value="EUN">EUN</option>
-                <option value="KR">KR</option>
-                <option value="BR">BR</option>
-                <option value="JP">JP</option>
-                <option value="RU">RU</option>
-                <option value="OCE">OCE</option>
-                <option value="TR">TR</option>
-                <option value="LAN">LAN</option>
-                <option value="LAS">LAS</option>
+                <option value="na1">NA</option>
+                <option value="euw1">EUW</option>
+                <option value="eun1">EUN</option>
+                <option value="kr">KR</option>
+                <option value="br1">BR</option>
+                <option value="jp1">JP</option>
+                <option value="ru">RU</option>
+                <option value="oc1">OCE</option>
+                <option value="tr1">TR</option>
+                <option value="la1">LAN</option>
+                <option value="la2">LAS</option>
               </select>
               <button className="btn homepage__submit-btn">Enter</button>
             </div>
