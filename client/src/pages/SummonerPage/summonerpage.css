@@ -4,6 +4,58 @@
   background-color: #31313C;
 }
 
+.summonerpage__region-and-name-search {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: hsl(0, 0%, 50%);
+  width: 80%;
+  border-radius: 10000px;
+  margin: 0 auto;
+  position: relative;
+  top: 15px;
+  padding: .5rem 2rem;
+}
+
+.summonerpage__region-select-wrapper {
+  display: flex;
+  flex-direction: column;
+  padding: .3rem;
+}
+
+.summonerpage__region-span {}
+
+.summonerpage__region-select {
+  padding: 0;
+}
+
+.summonerpage__search-input-wrapper {
+  display: flex;
+  flex-direction: column;
+  border-left: 1px solid white;
+  padding: .3rem;
+}
+
+.summonerpage__search-span {}
+
+.summonerpage__search-input {
+  padding: 0;
+  margin: 0;
+  border: none;
+  background-color: white;
+}
+
+.summonerpage__search-input:hover,
+.summonerpage__search-input:focus {
+  border: none;
+  box-shadow: none;
+}
+
+.summonerpage__search-btn {
+  background-color: black;
+  border-radius: 10000px;
+}
+
 .summonerpage__icon-and-name-wrapper {
   display: flex;
   justify-content: center;
