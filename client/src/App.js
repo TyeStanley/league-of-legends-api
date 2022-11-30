@@ -4,7 +4,7 @@ import './App.css';
 import Nav from './components/Nav/nav.js';
 import Footer from './components/Footer/footer.js';
 import HomePage from './pages/HomePage/homepage.js';
-import PlayerStatsPage from './pages/PlayerStatsPage/playerstatspage.js';
+import SummonerPage from './pages/SummonerPage/summonerpage.js';
 
 function App() {
   return (
@@ -19,7 +19,7 @@ function App() {
             />
             <Route
               path="/player"
-              element={<PlayerStatsPage />}
+              element={<SummonerPage />}
             />
           </Routes>
         </Router>

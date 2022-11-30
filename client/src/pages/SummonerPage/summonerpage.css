@@ -1,0 +1,29 @@
+.summonerpage {
+  height: 100vh;
+}
+
+.summonerpage__icon-and-name-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.summonerpage__img-and-level-wrapper {
+
+}
+
+.summonerpage__img {
+  height: 50px;
+  width: 50px;
+}
+.summonerpage__img img {
+  height: 100%;
+}
+
+.summonerpage__level {}
+
+.summonerpage__name {}
+
+.summonerpage__update-btn {
+  background-color: gray;
+  border-radius: 10000px;
+}

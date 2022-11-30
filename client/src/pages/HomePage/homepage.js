@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './homepage.css';
-import PlayerStatsPage from '../PlayerStatsPage/playerstatspage.js'
+import PlayerStatsPage from '../SummonerPage/summonerpage.js';
 
 export default function Homepage() {
   const [accountData, setAccountData] = useState(null);
