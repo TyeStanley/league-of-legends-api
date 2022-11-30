@@ -1,29 +1,51 @@
 .summonerpage {
   height: 100vh;
+  color: white;
+  background-color: #31313C;
 }
 
 .summonerpage__icon-and-name-wrapper {
   display: flex;
   justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  border-bottom: 1px solid white;
 }
 
 .summonerpage__img-and-level-wrapper {
-
+  padding: 1rem;
 }
 
 .summonerpage__img {
-  height: 50px;
-  width: 50px;
+  height: 100px;
+  width: 100px;
 }
+
 .summonerpage__img img {
-  height: 100%;
+  width: 100%;
+  border-radius: 1.5rem;
+  border: 2px solid white;
 }
 
-.summonerpage__level {}
+.summonerpage__level {
+  text-align: center;
+}
 
-.summonerpage__name {}
+.summonerpage__name-and-btn-wrapper {
+  padding: 1rem;
+}
+
+.summonerpage__name {
+  padding-bottom: .5rem;
+}
 
 .summonerpage__update-btn {
-  background-color: gray;
-  border-radius: 10000px;
+  background-color: hsl(0, 0%, 50%);
+  border-radius: 1rem;
+  border: 1px solid hsl(0, 0%, 50%);
+}
+
+.summonerpage__update-btn:hover {
+  border: 1px solid white;
+  background-color: hsl(0, 0%, 30%);
 }
