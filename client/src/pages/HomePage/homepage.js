@@ -3,35 +3,29 @@ import './homepage.css';
 import PlayerStatsPage from '../SummonerPage/summonerpage.js';
 
 export default function Homepage() {
-  const [accountData, setAccountData] = useState(null);
-  // const [region, setRegion] = useState(null);
-  // const [summonerName, setSummonerName] = useState(null);
-  // const [loading, setLoading] = useState(true);
-
+  const [region, setRegion] = useState('');
+  const [summonerName, setSummonerName] = useState('');
+  const [shown, setShown] = useState(false);
+  
   function handleFormSubmit(e) {
     if (!e.target.matches('.homepage__submit-btn')) return;
     e.preventDefault();
 
     // get summoner name input
-    const summonerName = document.querySelector('.homepage__summoner-name-input').value
+    const currentSummonerName = document.querySelector('.homepage__summoner-name-input').value
     
     // assign the text value from select to variable called region
     const selection = document.querySelector('.homepage__region-select');
-    const region = selection.options[selection.selectedIndex].value;
-    
-    fetch(`http://localhost:3001/api/region/${region}/name/${summonerName}`)
-      .then(response => response.json())
-      .then(data => {
-        console.log(data);
-        setAccountData(data);
-      })
-      .catch(error => {
-        console.error('Error fetching data: ', error);
-      })
+    const currentRegion = selection.options[selection.selectedIndex].value;
+
+    // Sets the value of the region and name
+    setRegion(currentRegion);
+    setSummonerName(currentSummonerName);
+    // Shown is set to true to render PlayerStatsPage and to pass off region and name values
+    setShown(true);
   }
 
-  console.log(accountData);
-  if (accountData) return <PlayerStatsPage accountData={accountData} />
+  if (shown) return <PlayerStatsPage region={region} summonerName={summonerName} />
 
   return (
     <div className="homepage">

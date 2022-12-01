@@ -1,24 +1,21 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './summonerpage.css';
-import placeHolder from '../../assets/img/profileicon/508.png';
 
-export default function Summonerpage({ accountData }) {
-  if (accountData) {
-    const {
-      accountId,
-      id,
-      name,
-      profileIconId,
-      puuid,
-      revisionDate,
-      summonerLevel
-    } = accountData;
+//import placeHolder from '../../assets/img/profileicon/508.png';
 
-    //const profileIconLink = require(`../../assets/img/profileicon/${profileIconId}.png`);
+export default function Summonerpage(props) {
+  const [account, setAccount] = useState('not set yet');
+  const profileIconLink = `http://ddragon.leagueoflegends.com/cdn/12.22.1/img/profileicon/${account.profileIconId}.png`;
 
-    const profileIconLink = `http://ddragon.leagueoflegends.com/cdn/12.22.1/img/profileicon/${profileIconId}.png`
-  }
-  
+  useEffect(() => {
+    if (props.length !== 0) {
+      fetch(`http://localhost:3001/api/region/${props.region}/name/${props.summonerName}`)
+        .then(response => response.json())
+        .then(data => { setAccount(data) })
+        .catch(error => { console.error('Error fetching data: ', error) })
+    }
+  }, []);
+
   return (
     <div className="summonerpage">
       <section className="summonerpage__region-and-name-search">
@@ -42,18 +39,18 @@ export default function Summonerpage({ accountData }) {
           <span className="summonerpage__search-span">Search</span>
           <input className="input summonerpage__search-input" type="text" />
         </div>
-        <button className="btn summonerpage__search-btn">Enter</button>
+        <button className="btn summonerpage__search-btn" >Enter</button>
       </section>
 
       <section className="summonerpage__icon-and-name-wrapper">
         <div className="summonerpage__img-and-level-wrapper">
           <div className="summonerpage__img">
-            <img src={profileIconLink || placeHolder} alt="placeholder" />
+            <img src={profileIconLink} alt="Placeholder" />
           </div>
-          <div className="summonerpage__level">{summonerLevel || 'No Summoner Name'}</div>
+          <div className="summonerpage__level">{account.summonerLevel}</div>
         </div>
         <div className="summonerpage__name-and-btn-wrapper">
-          <h3 className="summonerpage__name">{name}</h3>
+          <h3 className="summonerpage__name">{account.name}</h3>
           <button className="btn summonerpage__update-btn">Update</button>
         </div>
       </section>
