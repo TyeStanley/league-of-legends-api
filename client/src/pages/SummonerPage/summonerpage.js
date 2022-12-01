@@ -2,8 +2,23 @@ import React from 'react';
 import './summonerpage.css';
 import placeHolder from '../../assets/img/profileicon/508.png';
 
-export default function Summonerpage(props) {
-  console.log(props);
+export default function Summonerpage({ accountData }) {
+  if (accountData) {
+    const {
+      accountId,
+      id,
+      name,
+      profileIconId,
+      puuid,
+      revisionDate,
+      summonerLevel
+    } = accountData;
+
+    //const profileIconLink = require(`../../assets/img/profileicon/${profileIconId}.png`);
+
+    const profileIconLink = `http://ddragon.leagueoflegends.com/cdn/12.22.1/img/profileicon/${profileIconId}.png`
+  }
+  
   return (
     <div className="summonerpage">
       <section className="summonerpage__region-and-name-search">
@@ -23,7 +38,6 @@ export default function Summonerpage(props) {
             <option value="la2">LAS</option>
           </select>
         </div>
-        
         <div className="summonerpage__search-input-wrapper">
           <span className="summonerpage__search-span">Search</span>
           <input className="input summonerpage__search-input" type="text" />
@@ -31,18 +45,15 @@ export default function Summonerpage(props) {
         <button className="btn summonerpage__search-btn">Enter</button>
       </section>
 
-
-
-
       <section className="summonerpage__icon-and-name-wrapper">
         <div className="summonerpage__img-and-level-wrapper">
           <div className="summonerpage__img">
-            <img src={placeHolder} alt="placeholder" />
+            <img src={profileIconLink || placeHolder} alt="placeholder" />
           </div>
-          <div className="summonerpage__level">528</div>
+          <div className="summonerpage__level">{summonerLevel || 'No Summoner Name'}</div>
         </div>
         <div className="summonerpage__name-and-btn-wrapper">
-          <h3 className="summonerpage__name">Summoner</h3>
+          <h3 className="summonerpage__name">{name}</h3>
           <button className="btn summonerpage__update-btn">Update</button>
         </div>
       </section>
