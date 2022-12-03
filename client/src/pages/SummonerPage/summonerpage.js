@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './summonerpage.css';
+import RankedSolo from '../../components/RankedSolo/rankedsolo.js';
 
 //import placeHolder from '../../assets/img/profileicon/508.png';
 
@@ -74,12 +75,10 @@ export default function Summonerpage(props) {
         </div>
         <button className="btn summonerpage__search-btn" onClick={handleInputSubmit}>Enter</button>
       </section>
-
       <section className="summonerpage__icon-and-name-wrapper">
         <div className="summonerpage__img-and-level-wrapper">
           <div className="summonerpage__img">
             <img src={profileIconLink} alt="League of Legends" />
-            
           </div>
           <div className="summonerpage__level">{account.summonerLevel}</div>
         </div>
@@ -88,6 +87,7 @@ export default function Summonerpage(props) {
           <button className="btn summonerpage__update-btn">Update</button>
         </div>
       </section>
+      <RankedSolo />
     </div>
   )
 }
