@@ -1,5 +1,6 @@
 import React from 'react';
 import './rankedsolo.css';
+import platinumRank from '../../assets/img/ranked-emblems/Emblem_Platinum.png';
 
 export default function Rankedsolo() {
   return (
@@ -7,7 +8,7 @@ export default function Rankedsolo() {
       <h3>Ranked Solo</h3>
       <div>
         <div>
-          <img />
+          <img src={platinumRank} alt="Platinum Emblem Rank" />
         </div>
         <div>
           <div>Platinum 4</div>
