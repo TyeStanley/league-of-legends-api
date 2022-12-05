@@ -2,7 +2,8 @@ import React from 'react';
 import './rankedsolo.css';
 import platinumRank from '../../assets/img/ranked-emblems/Emblem_Platinum.png';
 
-export default function Rankedsolo() {
+export default function Rankedsolo({ summonerId }) {
+
   return (
     <section className="summonerpage__ranked-solo">
       <div className="ranked-solo__title">Ranked Solo</div>

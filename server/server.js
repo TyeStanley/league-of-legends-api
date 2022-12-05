@@ -28,9 +28,21 @@ if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '../client/build')));
 }
 
+// Fetches all key information about a league account (used to get other information as well)
 app.get('/api/region/:region/name/:username', (req, res) => {
   
   const apiLink = `https://${req.params.region}.api.riotgames.com/lol/summoner/v4/summoners/by-name/${req.params.username}?api_key=${process.env.RIOT_API_KEY}`
+
+  fetch(apiLink)
+    .then(response => response.json())
+    .then(data => res.send(data))
+    .catch(err => res.send(`Error: ${err}`))
+})
+
+// Fetches information for rank, tier, lp, wins and losses with encryptedSummonerId that you get from the above request ^
+app.get('/api/region/:region/encryptedSummonerId/:summonerId', (req, res) => {
+  
+  const apiLink = `https://${req.params.region}.api.riotgames.com/lol/league/v4/entries/by-summoner/${req.params.summonerId}?api_key=${process.env.RIOT_API_KEY}`
 
   fetch(apiLink)
     .then(response => response.json())

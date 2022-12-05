@@ -11,6 +11,7 @@ export default function Summonerpage(props) {
     summonerLevel: 0
   });
 
+  console.log(account);
   // gather and sets information collected for region and name to use in a fetch to store fetch data in account state
   const [currentInitInfo, setInitInfo] = useState({ region: '', name: '' });
 
@@ -90,7 +91,7 @@ export default function Summonerpage(props) {
           <button className="btn summonerpage__update-btn">Update</button>
         </div>
       </section>
-      <RankedSolo />
+      <RankedSolo summonerId={account.id} />
     </div>
   )
 }
