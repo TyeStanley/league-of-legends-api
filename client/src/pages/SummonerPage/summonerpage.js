@@ -10,10 +10,13 @@ export default function Summonerpage(props) {
     name: 'Nameless',
     summonerLevel: 0
   });
+
+  // gather and sets information collected for region and name to use in a fetch to store fetch data in account state
   const [currentInitInfo, setInitInfo] = useState({ region: '', name: '' });
 
-  const profileIconLink = `http://ddragon.leagueoflegends.com/cdn/12.22.1/img/profileicon/${account.profileIconId}.png`;
-
+  // const profileIconLink = `http://ddragon.leagueoflegends.com/cdn/12.22.1/img/profileicon/${account.profileIconId}.png`;
+  const profileIconLink = require(`../../assets/img/profileicon/${account.profileIconId}.png`);
+ 
   // useEffect for fetching using props from homepage input information (1 time use)
   useEffect(() => {
     if (props.length !== 0) apiInitialCall(props.region, props.summonerName);

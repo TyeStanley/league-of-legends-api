@@ -1,0 +1,37 @@
+.summonerpage__ranked-solo {
+  
+}
+
+.ranked-solo__title {
+  text-align: center;
+}
+
+.ranked-solo__container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid white;
+  padding: 1rem;
+}
+
+.ranked-solo__emblem-rank {
+  width: 100px;
+}
+
+.ranked-solo__emblem-rank img {
+  width: 100%;
+}
+
+.ranked-solo__rank-and-lp-container {}
+
+.ranked-solo__rank {}
+
+.ranked-solo__lp {}
+
+.ranked-solo__win-lose-and-winrate-wrapper {
+  text-align: right;
+}
+
+.ranked-solo__win-lose {}
+
+.ranked-solo__winrate {}
