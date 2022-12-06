@@ -11,7 +11,6 @@ export default function Summonerpage(props) {
     summonerLevel: 0
   });
 
-  console.log(account);
   // gather and sets information collected for region and name to use in a fetch to store fetch data in account state
   const [currentInitInfo, setInitInfo] = useState({ region: '', name: '' });
 
@@ -20,7 +19,7 @@ export default function Summonerpage(props) {
  
   // useEffect for fetching using props from homepage input information (1 time use)
   useEffect(() => {
-    if (props.length !== 0) apiInitialCall(props.region, props.summonerName);
+    if (props.length !== 0) setInitInfo({ region: props.region, name: props.summonerName });
   }, []);
 
   // Gathers the input for name and region when on the summoner page
@@ -91,7 +90,7 @@ export default function Summonerpage(props) {
           <button className="btn summonerpage__update-btn">Update</button>
         </div>
       </section>
-      <RankedSolo summonerId={account.id} />
+      <RankedSolo summonerId={account.id} region={currentInitInfo.region} />
     </div>
   )
 }
