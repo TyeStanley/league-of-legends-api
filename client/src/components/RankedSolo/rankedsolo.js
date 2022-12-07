@@ -1,28 +1,29 @@
 import React, { useState, useEffect } from 'react';
 import './rankedsolo.css';
-//import platinumRank from '../../assets/img/ranked-emblems/Emblem_PLATINUM.png';
 
 export default function Rankedsolo({ summonerId, region }) {
   const [rankedStats, setRankedStats] = useState([{
-    tier: 'BRONZE',
+    tier: 'PLACEHOLDER',
   }]);
   const [isLoading, setIsLoading] = useState(true);
 
+  // Rank Emblem dynamic
   const rankEmblem = require(`../../assets/img/ranked-emblems/Emblem_${rankedStats[0].tier}.png`)
 
+  // Fetch the data for the current ranked stats of a summonerId and region
   useEffect(() => {
     fetch(`http://localhost:3001/api/region/${region}/encryptedSummonerId/${summonerId}`)
       .then(response => response.json())
       .then(data => setRankedStats(data))
       .catch(error => { console.error('Error fetching data: ', error) })
-  }, [summonerId])
+  }, [summonerId, region])
 
+  // If tier doesn't equal to null then set the loading screen to false
   useEffect(() => {
-    if (rankedStats[0].tier !== 'BRONZE') {
-      setIsLoading(false);
-    }
+    if (rankedStats[0].tier !== 'PLACEHOLDER') setIsLoading(false);
   }, [rankedStats[0].tier])
 
+  // Simple function to find the win % of the account
   function winratePercent(wins, losses) {
     return Math.round(100 * wins / (wins + losses))
   }

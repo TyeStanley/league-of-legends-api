@@ -7,9 +7,10 @@ import RankedSolo from '../../components/RankedSolo/rankedsolo.js';
 export default function Summonerpage(props) {
   const [account, setAccount] = useState({
     profileIconId: 508,
-    name: 'Nameless',
+    name: '',
     summonerLevel: 0
   });
+  const [isLoading, setIsLoading] = useState(true);
 
   // gather and sets information collected for region and name to use in a fetch to store fetch data in account state
   const [currentInitInfo, setInitInfo] = useState({ region: '', name: '' });
@@ -24,8 +25,13 @@ export default function Summonerpage(props) {
 
   // Gathers the input for name and region when on the summoner page
   useEffect(() => {
+    setIsLoading(true)
     apiInitialCall(currentInitInfo.region, currentInitInfo.name);
   }, [currentInitInfo])
+
+  useEffect(() => {
+    if (account.name !== '') setIsLoading(false);
+  }, [account])
 
   // Uses the enter button to submit user input and region to fetch data from riot api
   function handleInputSubmit(e) {
@@ -52,6 +58,34 @@ export default function Summonerpage(props) {
       .then(data => { setAccount(data) })
       .catch(error => { console.error('Error fetching data: ', error) })
   }
+
+  if (isLoading) return (
+    <div className="summonerpage">
+      <section className="summonerpage__region-and-name-search">
+        <div className="summonerpage__region-select-wrapper">
+          <span className="summonerpage__region-span">Region</span>
+          <select className="select summonerpage__region-select">
+            <option value="na1">NA</option>
+            <option value="euw1">EUW</option>
+            <option value="eun1">EUN</option>
+            <option value="kr">KR</option>
+            <option value="br1">BR</option>
+            <option value="jp1">JP</option>
+            <option value="ru">RU</option>
+            <option value="oc1">OCE</option>
+            <option value="tr1">TR</option>
+            <option value="la1">LAN</option>
+            <option value="la2">LAS</option>
+          </select>
+        </div>
+        <div className="summonerpage__search-input-wrapper">
+          <span className="summonerpage__search-span">Search</span>
+          <input className="input summonerpage__search-input" type="text" />
+        </div>
+        <button className="btn summonerpage__search-btn" onClick={handleInputSubmit}>Enter</button>
+      </section>
+    </div>
+  )
 
   return (
     <div className="summonerpage">
