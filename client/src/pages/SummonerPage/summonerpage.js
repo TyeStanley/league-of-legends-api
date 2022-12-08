@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './summonerpage.css';
 import RankedSolo from '../../components/RankedSolo/rankedsolo.js';
-
-//import placeHolder from '../../assets/img/profileicon/508.png';
+import GameList from '../../components/GameList/gamelist.js';
 
 export default function Summonerpage(props) {
   const [account, setAccount] = useState({
@@ -129,6 +128,7 @@ export default function Summonerpage(props) {
         </div>
       </section>
       <RankedSolo summonerId={account.id} region={currentInitInfo.region} />
+      <GameList />
     </div>
   )
 }
