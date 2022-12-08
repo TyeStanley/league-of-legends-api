@@ -1,6 +1,4 @@
-.summonerpage__ranked-solo {
-  
-}
+/* .summonerpage__ranked-solo {} */
 
 .ranked-solo__title {
   text-align: center;
@@ -23,16 +21,20 @@
   width: 100%;
 }
 
-.ranked-solo__rank-and-lp-container {}
+/* .ranked-solo__rank-and-lp-container {} */
 
-.ranked-solo__rank {}
+/* .ranked-solo__rank {} */
 
-.ranked-solo__lp {}
+/* .ranked-solo__lp {} */
 
 .ranked-solo__win-lose-and-winrate-wrapper {
   text-align: right;
 }
 
-.ranked-solo__win-lose {}
+/* .ranked-solo__win-lose {} */
 
-.ranked-solo__winrate {}
+/* .ranked-solo__winrate {} */
+
+.visibility {
+  opacity: 0;
+}

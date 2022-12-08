@@ -6,12 +6,16 @@ import RankedSolo from '../../components/RankedSolo/rankedsolo.js';
 
 export default function Summonerpage(props) {
   const [account, setAccount] = useState({
-    profileIconId: 508,
+    accountId: '',
+    id: '',
     name: '',
+    profileIconId: 508,
+    puuid: '',
+    revisionDate: 0,
     summonerLevel: 0
   });
   const [isLoading, setIsLoading] = useState(true);
-
+  
   // gather and sets information collected for region and name to use in a fetch to store fetch data in account state
   const [currentInitInfo, setInitInfo] = useState({ region: '', name: '' });
 
