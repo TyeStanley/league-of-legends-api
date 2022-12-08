@@ -61,7 +61,7 @@ export default function Summonerpage(props) {
 
   if (isLoading) return (
     <div className="summonerpage">
-      <section className="summonerpage__region-and-name-search">
+      <form className="summonerpage__region-and-name-search">
         <div className="summonerpage__region-select-wrapper">
           <span className="summonerpage__region-span">Region</span>
           <select className="select summonerpage__region-select">
@@ -83,13 +83,13 @@ export default function Summonerpage(props) {
           <input className="input summonerpage__search-input" type="text" />
         </div>
         <button className="btn summonerpage__search-btn" onClick={handleInputSubmit}>Enter</button>
-      </section>
+      </form>
     </div>
   )
 
   return (
     <div className="summonerpage">
-      <section className="summonerpage__region-and-name-search">
+      <form className="summonerpage__region-and-name-search">
         <div className="summonerpage__region-select-wrapper">
           <span className="summonerpage__region-span">Region</span>
           <select className="select summonerpage__region-select">
@@ -111,7 +111,7 @@ export default function Summonerpage(props) {
           <input className="input summonerpage__search-input" type="text" />
         </div>
         <button className="btn summonerpage__search-btn" onClick={handleInputSubmit}>Enter</button>
-      </section>
+      </form>
       <section className="summonerpage__icon-and-name-wrapper">
         <div className="summonerpage__img-and-level-wrapper">
           <div className="summonerpage__img">

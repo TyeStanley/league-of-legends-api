@@ -4,13 +4,14 @@
 
 .ranked-solo__title {
   text-align: center;
+  border-top: 1px solid white;
+  border-bottom: 1px solid white;
 }
 
 .ranked-solo__container {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-top: 1px solid white;
   padding: 1rem;
 }
 

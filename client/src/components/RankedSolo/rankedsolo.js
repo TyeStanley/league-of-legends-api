@@ -21,6 +21,7 @@ export default function Rankedsolo({ summonerId, region }) {
   // If tier doesn't equal to null then set the loading screen to false
   useEffect(() => {
     if (rankedStats[0].tier !== 'PLACEHOLDER') setIsLoading(false);
+    
   }, [rankedStats[0].tier])
 
   // Simple function to find the win % of the account
