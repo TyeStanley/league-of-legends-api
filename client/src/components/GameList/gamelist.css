@@ -17,16 +17,35 @@
 
 .gamelist__game-info {}
 
-.gamelist__champion-icon-spells-runes-container {}
 
-.gamelist__champion-icon-wrapper {}
 
-.gamelist__champion-icon {}
+.gamelist__champion-icon-spells-runes-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* .gamelist__champion-icon-wrapper {} */
+
+.gamelist__champion-icon {
+  position: relative;
+  width: 50px;
+}
+
+.gamelist__champion-icon img {
+  width: 100%;
+}
+
+.gamelist__champion-icon-level {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  padding: 0.2rem;
+}
 
 .gamelist__spells-runes {}
 
 .gamelist__kda-statistics {}
-
 
 
 .gamelist__items-built {

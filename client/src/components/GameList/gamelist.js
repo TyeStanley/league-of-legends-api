@@ -1,6 +1,7 @@
 import React from 'react';
 import './gamelist.css';
 import randomItem from '../../assets/img/item/1043.png';
+import championIcon from '../../assets/img/champion/Ahri.png';
 
 export default function Gamelist() {
   return (
@@ -14,12 +15,12 @@ export default function Gamelist() {
           <div>47:58</div>
         </div>
         <div className="gamelist__champion-icon-spells-runes-container">
-          <div className="gamelist__champion-icon-wrapper">
+          {/* <div className="gamelist__champion-icon-wrapper"> */}
             <div className="gamelist__champion-icon">
-              img tag
-              <div>14</div>
+              <img src={championIcon} alt="Champion Icon" />
+              <div className="gamelist__champion-icon-level">14</div>
             </div>
-          </div>
+          {/* </div> */}
           <div className="gamelist__spells-runes">
             <div>img tag</div>
             <div>img tag</div>
