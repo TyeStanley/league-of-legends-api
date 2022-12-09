@@ -1,8 +1,19 @@
-.gamelist {}
+.gamelist {
+  font-size: 12px;
+}
 
-.gamelist__title {}
+.gamelist__title {
+  text-align: center;
+  border-top: 1px solid white;
+  border-bottom: 1px solid white;
+}
 
-.gamelist__played-game-wrapper {}
+.gamelist__container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+}
 
 .gamelist__game-info {}
 
@@ -16,8 +27,30 @@
 
 .gamelist__kda-statistics {}
 
-.gamelist__items-built {}
 
+
+.gamelist__items-built {
+  
+}
+
+.gamelist__built-item-container {
+  display: flex;
+}
+
+.gamelist__built-item {
+  width: 25px;
+  padding-left: 0.1rem;
+  padding-right: 0.1rem;
+  border-radius: 0.5rem;
+}
+
+.gamelist__built-item img {
+  width: 100%;
+}
+
+
+
+/* Non Mobile */
 .gamelist__player-name-list {}
 
 .gamelist_team-1 {}

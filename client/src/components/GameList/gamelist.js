@@ -1,16 +1,17 @@
 import React from 'react';
 import './gamelist.css';
+import randomItem from '../../assets/img/item/1043.png';
 
 export default function Gamelist() {
   return (
     <section className="gamelist">
-      <h3 className="gamelist__title">Games Played</h3>
-      <div className="gamelist__played-game-wrapper">
+      <div className="gamelist__title">GAMES PLAYED</div>
+      <div className="gamelist__container">
         <div className="gamelist__game-info">
-          <div>Game Type</div>
+          <div>Normals</div>
           <div>11 Hours Ago</div>
           <div>Victory</div>
-          <div>Game Length</div>
+          <div>47:58</div>
         </div>
         <div className="gamelist__champion-icon-spells-runes-container">
           <div className="gamelist__champion-icon-wrapper">
@@ -32,15 +33,34 @@ export default function Gamelist() {
           <div>45 CS (2.3)</div>
         </div>
         <div className="gamelist__items-built">
-          <div>box</div>
-          <div>box</div>
-          <div>box</div>
-          <div>box</div>
-          <div>box</div>
-          <div>box</div>
-          <div>box</div>
+          <div className="gamelist__built-item-container">
+            <div className="gamelist__built-item">
+              <img src={randomItem} alt="league item" />
+            </div>
+            <div className="gamelist__built-item">
+              <img src={randomItem} alt="league item" />
+            </div>
+            <div className="gamelist__built-item">
+              <img src={randomItem} alt="league item" />
+            </div>
+            <div className="gamelist__built-item">
+              <img src={randomItem} alt="league item" />
+            </div>
+          </div>
+          <div className="gamelist__built-item-container">
+            <div className="gamelist__built-item">
+              <img src={randomItem} alt="league item" />
+            </div>
+            <div className="gamelist__built-item">
+              <img src={randomItem} alt="league item" />
+            </div>
+            <div className="gamelist__built-item">
+              <img src={randomItem} alt="league item" />
+            </div>
+          </div>
         </div>
-        <div className="gamelist__player-name-list">
+        {/* Non Mobile */}
+        {/* <div className="gamelist__player-name-list">
           <div className="gamelist_team-1">
             <div className="gamelist_player">
               <div>icon</div>
@@ -85,7 +105,7 @@ export default function Gamelist() {
               <div>Player Name</div>
             </div>
           </div>
-        </div>
+        </div> */}
         <div className="gamelist_tab"></div>
       </div>
     </section>
