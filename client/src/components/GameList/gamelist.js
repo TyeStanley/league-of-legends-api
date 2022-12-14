@@ -2,6 +2,10 @@ import React from 'react';
 import './gamelist.css';
 import randomItem from '../../assets/img/item/1043.png';
 import championIcon from '../../assets/img/champion/Ahri.png';
+import igniteIcon from '../../assets/img/spell/SummonerDot.png';
+import flashIcon from '../../assets/img/spell/SummonerFlash.png';
+import mainRune from '../../assets/img/perk-images/Styles/Domination/Electrocute/Electrocute.png';
+import secondaryRune from '../../assets/img/perk-images/Styles/7202_Sorcery.png';
 
 export default function Gamelist() {
   return (
@@ -15,21 +19,31 @@ export default function Gamelist() {
           <div>47:58</div>
         </div>
         <div className="gamelist__champion-icon-spells-runes-container">
-          {/* <div className="gamelist__champion-icon-wrapper"> */}
-            <div className="gamelist__champion-icon">
-              <img src={championIcon} alt="Champion Icon" />
-              <div className="gamelist__champion-icon-level">14</div>
-            </div>
-          {/* </div> */}
+          <div className="gamelist__champion-icon">
+            <img src={championIcon} alt="Champion Icon" />
+            <div className="gamelist__champion-icon-level">14</div>
+          </div>
           <div className="gamelist__spells-runes">
-            <div>img tag</div>
-            <div>img tag</div>
-            <div>img tag</div>
-            <div>img tag</div>
+            <div className="gamelist__spells-runes-wrapper">
+              <div className="gamelist__summoner-spell-rune-icon">
+                <img src={igniteIcon} alt="Summoner Spell 1" />
+              </div>
+              <div className="gamelist__summoner-spell-rune-icon">
+                <img src={flashIcon} alt="Summoner Spell 2" />
+              </div>
+            </div>
+            <div className="gamelist__spells-runes-wrapper">
+              <div className="gamelist__summoner-spell-rune-icon">
+                <img src={mainRune} alt="Rune 1" />
+              </div>
+              <div className="gamelist__summoner-spell-rune-icon">
+                <img src={secondaryRune} alt="Rune 2" />
+              </div>
+            </div>
           </div>
         </div>
         <div className="gamelist__kda-statistics">
-          <div>10/0/31</div>
+          <div>10/<span className="red">0</span>/31</div>
           <div>3.50 KDA</div>
           <div>45 CS (2.3)</div>
         </div>

@@ -113,7 +113,12 @@ export default function Summonerpage(props) {
           <span className="summonerpage__search-span">Search</span>
           <input className="input summonerpage__search-input" type="text" />
         </div>
-        <button className="btn summonerpage__search-btn" onClick={handleInputSubmit}>Enter</button>
+        <button 
+          className="btn summonerpage__search-btn"
+          onClick={handleInputSubmit}
+        >
+          Enter
+        </button>
       </form>
       <section className="summonerpage__icon-and-name-wrapper">
         <div className="summonerpage__img-and-level-wrapper">

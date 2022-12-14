@@ -15,62 +15,78 @@
   padding: 1rem;
 }
 
-.gamelist__game-info {}
+.gamelist__game-info {
+  text-align: center;
+}
 
-
-
+/* Champion Icon and spells and runes section */
 .gamelist__champion-icon-spells-runes-container {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-/* .gamelist__champion-icon-wrapper {} */
-
 .gamelist__champion-icon {
   position: relative;
   width: 50px;
-}
-
-.gamelist__champion-icon img {
-  width: 100%;
+  height: 50px;
 }
 
 .gamelist__champion-icon-level {
   position: absolute;
   bottom: 0;
-  right: 0;
-  padding: 0.2rem;
+  right: 4px;
 }
 
-.gamelist__spells-runes {}
-
-.gamelist__kda-statistics {}
-
-
-.gamelist__items-built {
-  
+.gamelist__spells-runes {
+  display: flex;
 }
+
+.gamelist__spells-runes-wrapper {
+  padding-left: 0.3rem;
+  height: 50px;
+}
+
+.gamelist__summoner-spell-rune-icon {
+  width: 22px;
+}
+
+.gamelist__champion-icon img,
+.gamelist__summoner-spell-rune-icon img {
+  width: 100%;
+}
+/* End of Champion Icon and spells and runes section */
+
+/* KDA stats section */
+.gamelist__kda-statistics {
+  text-align: center;
+}
+
+.red {
+  color: red;
+}
+/* End of KDA stats section */
+
+/* Champion items built */
+/* .gamelist__items-built {} */
 
 .gamelist__built-item-container {
   display: flex;
 }
 
 .gamelist__built-item {
-  width: 25px;
-  padding-left: 0.1rem;
-  padding-right: 0.1rem;
-  border-radius: 0.5rem;
+  width: 22px;
+  height: 27px;
+  margin-right: 5px;
 }
 
 .gamelist__built-item img {
   width: 100%;
 }
-
-
+/* End of Champion KDA stats section */
 
 /* Non Mobile */
-.gamelist__player-name-list {}
+/* .gamelist__player-name-list {}
 
 .gamelist_team-1 {}
 
@@ -78,4 +94,4 @@
 
 .gamelist_player {}
 
-.gamelist_tab {}
+.gamelist_tab {} */
