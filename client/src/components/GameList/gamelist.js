@@ -50,27 +50,27 @@ export default function Gamelist() {
         <div className="gamelist__items-built">
           <div className="gamelist__built-item-container">
             <div className="gamelist__built-item">
-              <img src={randomItem} alt="league item" />
+              <img src={randomItem} alt="league item slot 1" />
             </div>
             <div className="gamelist__built-item">
-              <img src={randomItem} alt="league item" />
+              <img src={randomItem} alt="league item slot 2" />
             </div>
             <div className="gamelist__built-item">
-              <img src={randomItem} alt="league item" />
+              <img src={randomItem} alt="league item slot 3" />
             </div>
             <div className="gamelist__built-item">
-              <img src={randomItem} alt="league item" />
+              <img src={randomItem} alt="league item slot 4" />
             </div>
           </div>
           <div className="gamelist__built-item-container">
             <div className="gamelist__built-item">
-              <img src={randomItem} alt="league item" />
+              <img src={randomItem} alt="league item slot 5" />
             </div>
             <div className="gamelist__built-item">
-              <img src={randomItem} alt="league item" />
+              <img src={randomItem} alt="league item slot 6" />
             </div>
             <div className="gamelist__built-item">
-              <img src={randomItem} alt="league item" />
+              <img src={randomItem} alt="league item slot 7" />
             </div>
           </div>
         </div>

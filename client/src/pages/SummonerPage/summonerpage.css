@@ -36,6 +36,7 @@
   flex-direction: column;
   border-left: 1px solid white;
   padding: .3rem;
+  width: 125px;
 }
 
 /* .summonerpage__search-span {} */
