@@ -5,9 +5,12 @@ import Navmenu from '../NavMenu/navmenu.js'
 export default function Nav() {
   const [open, setOpen] = useState(false);
 
+  function handleBackground(e) {
+    if (!e.target.matches('.background-navmenu')) return
+    setOpen(false);
+  }
 
   return (<>
-
     <nav className="mobile-nav">
       <h1 className="nav__header">League API</h1>
       <div
@@ -20,7 +23,10 @@ export default function Nav() {
         <div className="burger-line" />
       </div>
     </nav>
-    <div>
+    <div
+      onClick={handleBackground}
+      className="background-navmenu"
+    >
       <Navmenu open={open} />
     </div>
 

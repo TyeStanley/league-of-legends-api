@@ -12,8 +12,8 @@
   transition: transform 0.3s ease-in-out;
   width: 55%;
   border-left: 1px solid black;
-  z-index: 9;
   transform: translateX(100%);
+  z-index: 10;
 }
 
 .nav-menu.show {
@@ -36,4 +36,15 @@
   color: white;
 }
 
-/* .nav-menu a:hover {} */
+.background-navmenu {
+  background-color: transparent;
+  transition: transform 0.3s ease-in-out;
+}
+
+.background-navmenu.show {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
