@@ -12,6 +12,7 @@ html, body {
 
 body {
   position: relative;
+  overflow-y: hidden !important;
 }
 
 .btn {

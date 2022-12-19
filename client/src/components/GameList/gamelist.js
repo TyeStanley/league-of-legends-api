@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './gamelist.css';
 import randomItem from '../../assets/img/item/1043.png';
 import championIcon from '../../assets/img/champion/Ahri.png';
@@ -7,7 +7,42 @@ import flashIcon from '../../assets/img/spell/SummonerFlash.png';
 import mainRune from '../../assets/img/perk-images/Styles/Domination/Electrocute/Electrocute.png';
 import secondaryRune from '../../assets/img/perk-images/Styles/7202_Sorcery.png';
 
-export default function Gamelist() {
+export default function Gamelist({ region, puuid }) {
+  const [matches, setMatches] = useState([])
+  console.log(matches)
+
+  // gets 20 matches and sets it to matches
+  useEffect(() => {
+    let route = '';
+    
+    switch (region) {
+      case 'na1':
+      case 'br1':
+      case 'la1':
+      case 'la2':
+        route = 'americas';
+        break;
+      case 'kr':
+      case 'kp1':
+        route = 'asia';
+        break;
+      case 'eun1':
+      case 'euw1':
+      case 'tr1':
+      case 'ru':
+        route = 'europe';
+        break;
+      default: break;
+    }
+
+    console.log(`Route: ${route}`)
+
+    fetch(`http://localhost:3001/api/region/${route}/by-puuid/${puuid}`)
+      .then(response => response.json())
+      .then(data => setMatches(data))
+      .catch(error => console.error(error))
+  }, [puuid])
+  
   return (
     <section className="gamelist">
       <div className="gamelist__title">GAMES PLAYED</div>

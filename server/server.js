@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 require('dotenv').config();
 const cors = require('cors');
+const { match } = require('assert');
 const fetch = (...args) => import('node-fetch').then(({default: fetch}) => fetch(...args));
 
 const app = express()
@@ -48,6 +49,34 @@ app.get('/api/region/:region/encryptedSummonerId/:summonerId', (req, res) => {
     .then(response => response.json())
     .then(data => res.send(data))
     .catch(err => res.send(`Error: ${err}`))
+})
+
+// gets match ids and then fetches data with ids to get information about every match information
+app.get('/api/region/:region/by-puuid/:puuid', (req, res) => {
+
+  const apiLink = `https://${req.params.region}.api.riotgames.com/lol/match/v5/matches/by-puuid/${req.params.puuid}/ids?api_key=${process.env.RIOT_API_KEY}`
+
+  // Gets the match ids
+  function getMatchIds() {
+    return fetch(apiLink).then(response => response.json());
+  }
+
+  async function main() {
+    const data = await getMatchIds();
+
+    const matches = await Promise.all(
+      data.map(async (matchId) => {
+
+        const response = await fetch(`https://${req.params.region}.api.riotgames.com/lol/match/v5/matches/${matchId}?api_key=${process.env.RIOT_API_KEY}`)
+
+        const match = await response.json();
+        return match;
+      })
+    )
+    res.send(matches);
+  }
+
+  main();
 })
 
 app.get('*', (req, res) => {

@@ -138,7 +138,7 @@ export default function Summonerpage(props) {
         </div>
       </section>
       <RankedSolo summonerId={account.id} region={currentInitInfo.region} />
-      <GameList />
+      <GameList region={currentInitInfo.region} puuid={account.puuid} />
     </div>
   )
 }
