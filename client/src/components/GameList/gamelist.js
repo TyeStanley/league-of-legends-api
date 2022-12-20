@@ -42,14 +42,38 @@ export default function Gamelist({ region, puuid }) {
       .then(data => setMatches(data))
       .catch(error => console.error(error))
   }, [puuid])
+
+  function gameEndedAgo(time) {
+    let now = new Date().getTime()
+    let difference = now - time
+
+    let seconds = difference / 1000
+    let minutes = seconds / 60
+    let hours = minutes / 60
+    let days = hours / 24
+    
+    if (seconds >= 0 && seconds < 60) {
+      return `${Math.floor(seconds)} seconds ago`
+    } else if (minutes <= 1 && minutes < 60) {
+      return `${Math.floor(minutes)} minutes ago`
+    } else if (hours <= 1 && hours < 2) {
+      return `an hour ago`
+    } else if (hours <= 2 && hours < 24) {
+      return `${Math.floor(hours)} hours ago`
+    } else if (days <= 1 && days < 2) {
+      return `a day ago`
+    } else if (days <= 2) {
+      return `${Math.floor(days)} days ago`
+    }
+  }
   
   return (
     <section className="gamelist">
       <div className="gamelist__title">GAMES PLAYED</div>
       <div className="gamelist__container">
         <div className="gamelist__game-info">
-          <div>Normals</div>
-          <div>11 Hours Ago</div>
+          <div>{matches[0].info.gameMode}</div>
+          <div>{gameEndedAgo(matches[0].info.gameEndTimestamp)}</div>
           <div>Victory</div>
           <div>47:58</div>
         </div>
