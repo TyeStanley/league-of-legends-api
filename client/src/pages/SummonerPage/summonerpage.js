@@ -13,6 +13,7 @@ export default function Summonerpage(props) {
     revisionDate: 0,
     summonerLevel: 0
   });
+
   const [isLoading, setIsLoading] = useState(true);
   
   // gather and sets information collected for region and name to use in a fetch to store fetch data in account state
@@ -63,7 +64,7 @@ export default function Summonerpage(props) {
   }
 
   if (isLoading) return (
-    <div className="summonerpage">
+    <div className="summonerpage isLoading">
       <form className="summonerpage__region-and-name-search">
         <div className="summonerpage__region-select-wrapper">
           <span className="summonerpage__region-span">Region</span>

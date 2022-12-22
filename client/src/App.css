@@ -13,6 +13,7 @@ html, body {
 body {
   position: relative;
   overflow-y: hidden !important;
+  background-color: #31313C;
 }
 
 .btn {

@@ -1,7 +1,10 @@
 .summonerpage {
-  height: 100vh;
   color: white;
   background-color: #31313C;
+}
+
+.summonerpage.isLoading {
+  height: 100vh;
 }
 
 .summonerpage__region-and-name-search {
