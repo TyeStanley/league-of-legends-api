@@ -15,6 +15,14 @@
   padding: 1rem;
 }
 
+.gamelist__container.win {
+  background-color: blue;
+}
+
+.gamelist__container.loss {
+  background-color: red;
+}
+
 .gamelist__game-info {
   text-align: center;
   width: 100px;

@@ -65,6 +65,25 @@ export default function Gamelist({ region, puuid }) {
       return `${Math.floor(days)} days ago`
     }
   }
+
+  function winOrLose(participants) {
+    const currentPlayer = participants.find(player => player.puuid === puuid)
+    if (currentPlayer.win) { return 'Victory' } 
+    else { return 'Defeat' }
+  }
+
+  // function winOrLoseBackground(participants) {
+  //   const currentPlayer = participants.find(player => player.puuid === puuid)
+
+  // }
+
+  function gameDuration(start, end) {
+    const gameLength = end - start
+    const lengthInMinutes = Math.floor(gameLength / 1000 / 60)
+    const lengthInSeconds = Math.floor(gameLength / 1000 % 60)
+
+    return `${lengthInMinutes}m ${lengthInSeconds}s`
+  }
   
   return (
     <section className="gamelist">
@@ -75,8 +94,8 @@ export default function Gamelist({ region, puuid }) {
             <div className="gamelist__game-info">
               <div>{match.info.gameMode}</div>
               <div>{gameEndedAgo(match.info.gameEndTimestamp)}</div>
-              <div>Victory</div>
-              <div>47:58</div>
+              <div>{winOrLose(match.info.participants)}</div>
+              <div>{gameDuration(match.info.gameStartTimestamp, match.info.gameEndTimestamp)}</div>
             </div>
             <div className="gamelist__champion-icon-spells-runes-container">
               <div className="gamelist__champion-icon">

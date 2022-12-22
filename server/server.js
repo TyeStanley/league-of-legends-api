@@ -54,7 +54,7 @@ app.get('/api/region/:region/encryptedSummonerId/:summonerId', (req, res) => {
 // gets match ids and then fetches data with ids to get information about every match information
 app.get('/api/region/:region/by-puuid/:puuid', (req, res) => {
 
-  const apiLink = `https://${req.params.region}.api.riotgames.com/lol/match/v5/matches/by-puuid/${req.params.puuid}/ids?count=10&api_key=${process.env.RIOT_API_KEY}`
+  const apiLink = `https://${req.params.region}.api.riotgames.com/lol/match/v5/matches/by-puuid/${req.params.puuid}/ids?count=3&api_key=${process.env.RIOT_API_KEY}`
 
   // Gets the match ids
   function getMatchIds() {
