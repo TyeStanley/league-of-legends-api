@@ -1,12 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './gamelist.css';
 import randomItem from '../../assets/img/item/1043.png';
-// import championIcon from '../../assets/img/champion/Ahri.png';
-// import igniteIcon from '../../assets/img/spell/SummonerDot.png';
-// import flashIcon from '../../assets/img/spell/SummonerFlash.png';
-import mainRune from '../../assets/img/perk-images/Styles/Domination/Electrocute/Electrocute.png';
-import secondaryRune from '../../assets/img/perk-images/Styles/7202_Sorcery.png';
-
 
 export default function Gamelist({ region, puuid }) {
   const [matches, setMatches] = useState([])
@@ -73,11 +67,6 @@ export default function Gamelist({ region, puuid }) {
     else { return 'Defeat' }
   }
 
-  // function winOrLoseBackground(participants) {
-  //   const currentPlayer = participants.find(player => player.puuid === puuid)
-
-  // }
-
   function gameDuration(start, end) {
     const gameLength = end - start
     const lengthInMinutes = Math.floor(gameLength / 1000 / 60)
@@ -110,7 +99,7 @@ export default function Gamelist({ region, puuid }) {
 
   function returnSpellName(summonerSpellId) {
     let summonerName = ''
-
+    
     switch (summonerSpellId) {
       case 1:
         summonerName = 'SummonerBoost'
@@ -159,7 +148,94 @@ export default function Gamelist({ region, puuid }) {
 
     return summonerName
   }
-  
+
+  function getRunes(participants, num) {
+    const currentPlayer = participants.find(player => player.puuid === puuid)
+    const runes = currentPlayer.perks.styles[num]
+    let runeId = ''
+
+    if (num === 0) {
+      runeId = runes.selections[num].perk
+    } else {
+      runeId = runes.style
+    }
+
+    let runeName = ''
+    switch (runeId) {
+      case 8000:
+        runeName = '7201_Precision'
+        break
+      case 8100:
+        runeName = '7200_Domination'
+        break
+      case 8200:
+        runeName = '7202_Sorcery'
+        break
+      case 8300:
+        runeName = '7203_Whimsy'
+        break
+      case 8400:
+        runeName = '7204_Resolve'
+        break
+      case 8112:
+        runeName = 'Domination/Electrocute/Electrocute'
+        break
+      case 8124:
+        runeName = 'Domination/Predator/Predator'
+        break
+      case 8128:
+        runeName = 'Domination/DarkHarvest/DarkHarvest'
+        break
+      case 9923:
+        runeName = 'Domination/HailOfBlades/HailOfBlades'
+        break
+      case 8351:
+        runeName = 'Inspiration/GlacialAugment/GlacialAugment'
+        break
+      case 8360:
+        runeName = 'Inspiration/UnsealedSpellbook/UnsealedSpellbook'
+        break
+      case 8369:
+        runeName = 'Inspiration/FirstStrike/FirstStrike'
+        break
+      case 8005:
+        runeName = 'Precision/PressTheAttack/PressTheAttack'
+        break
+      case 8008:
+        runeName = 'Precision/LethalTempo/LethalTempo'
+        break
+      case 8021:
+        runeName = 'Precision/FleetFootwork/FleetFootwork'
+        break
+      case 8010:
+        runeName = 'Precision/Conqueror/Conqueror'
+        break
+      case 8437:
+        runeName = 'Resolve/GraspOfTheUndying/GraspOfTheUndying'
+        break
+      case 8439:
+        runeName = 'Resolve/VeteranAftershock/VeteranAftershock'
+        break
+      case 8465:
+        runeName = 'Resolve/Guardian/Guardian'
+        break
+      case 8214:
+        runeName = 'Sorcery/SummonAery/SummonAery'
+        break
+      case 8229:
+        runeName = 'Sorcery/ArcaneComet/ArcaneComet'
+        break
+      case 8230:
+        runeName = 'Sorcery/PhaseRush/PhaseRush'
+        break
+      default:
+        runeName = 'RunesIcon'
+        break
+    }
+    
+    return require(`../../assets/img/perk-images/Styles/${runeName}.png`)
+  }
+
   return (
     <section className="gamelist">
       <div className="gamelist__title">GAMES PLAYED</div>
@@ -188,10 +264,10 @@ export default function Gamelist({ region, puuid }) {
                 </div>
                 <div className="gamelist__spells-runes-wrapper">
                   <div className="gamelist__summoner-spell-rune-icon">
-                    <img src={mainRune} alt="Rune 1" />
+                    <img src={getRunes(match.info.participants, 0)} alt="Rune 1" />
                   </div>
                   <div className="gamelist__summoner-spell-rune-icon">
-                    <img src={secondaryRune} alt="Rune 2" />
+                    <img src={getRunes(match.info.participants, 1)} alt="Rune 2" />
                   </div>
                 </div>
               </div>
