@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import './gamelist.css';
 import randomItem from '../../assets/img/item/1043.png';
-import championIcon from '../../assets/img/champion/Ahri.png';
-import igniteIcon from '../../assets/img/spell/SummonerDot.png';
-import flashIcon from '../../assets/img/spell/SummonerFlash.png';
+// import championIcon from '../../assets/img/champion/Ahri.png';
+// import igniteIcon from '../../assets/img/spell/SummonerDot.png';
+// import flashIcon from '../../assets/img/spell/SummonerFlash.png';
 import mainRune from '../../assets/img/perk-images/Styles/Domination/Electrocute/Electrocute.png';
 import secondaryRune from '../../assets/img/perk-images/Styles/7202_Sorcery.png';
+
 
 export default function Gamelist({ region, puuid }) {
   const [matches, setMatches] = useState([])
@@ -84,6 +85,80 @@ export default function Gamelist({ region, puuid }) {
 
     return `${lengthInMinutes}m ${lengthInSeconds}s`
   }
+
+  function findChampionIcon(participants) {
+    const currentPlayer = participants.find(player => player.puuid === puuid)
+    const playedChampion = currentPlayer.championName;
+    
+    return require(`../../assets/img/champion/${playedChampion}.png`)
+  }
+
+  function findChampionLevel(participants) {
+    const currentPlayer = participants.find(player => player.puuid === puuid)
+
+    return currentPlayer.champLevel
+  }
+
+  function getSummonerSpell(participants, num) {
+    const currentPlayer = participants.find(player => player.puuid === puuid)
+    const summonerSpellId = currentPlayer[`summoner${num}Id`]
+    
+    const summonerSpellName = returnSpellName(summonerSpellId)
+
+    return require(`../../assets/img/spell/${summonerSpellName}.png`)
+  }
+
+  function returnSpellName(summonerSpellId) {
+    let summonerName = ''
+
+    switch (summonerSpellId) {
+      case 1:
+        summonerName = 'SummonerBoost'
+        break
+      case 3:
+        summonerName = 'SummonerExhaust'
+        break
+      case 4:
+        summonerName = 'SummonerFlash'
+        break
+      case 6:
+        summonerName = 'SummonerHaste'
+        break
+      case 7:
+        summonerName = 'SummonerHeal'
+        break
+      case 11:
+        summonerName = 'SummonerSmite'
+        break
+      case 12:
+        summonerName = 'SummonerTeleport'
+        break
+      case 13:
+        summonerName = 'SummonerMana'
+        break
+      case 14:
+        summonerName = 'SummonerDot'
+        break
+      case 21:
+        summonerName = 'SummonerBarrier'
+        break
+      case 30:
+        summonerName = 'SummonerPoroRecall'
+        break
+      case 31:
+        summonerName = 'SummonerPoroThrow'
+        break
+      case 32:
+      case 39:
+        summonerName = 'SummonerSnowball'
+        break
+      default:
+        summonerName = 'Summoner_UltBookPlaceholder'
+        break
+    }
+
+    return summonerName
+  }
   
   return (
     <section className="gamelist">
@@ -99,16 +174,16 @@ export default function Gamelist({ region, puuid }) {
             </div>
             <div className="gamelist__champion-icon-spells-runes-container">
               <div className="gamelist__champion-icon">
-                <img src={championIcon} alt="Champion Icon" />
-                <div className="gamelist__champion-icon-level">14</div>
+                <img src={findChampionIcon(match.info.participants)} alt="Champion Icon" />
+                <div className="gamelist__champion-icon-level">{findChampionLevel(match.info.participants)}</div>
               </div>
               <div className="gamelist__spells-runes">
                 <div className="gamelist__spells-runes-wrapper">
                   <div className="gamelist__summoner-spell-rune-icon">
-                    <img src={igniteIcon} alt="Summoner Spell 1" />
+                    <img src={getSummonerSpell(match.info.participants, 1)} alt="Summoner Spell 1" />
                   </div>
                   <div className="gamelist__summoner-spell-rune-icon">
-                    <img src={flashIcon} alt="Summoner Spell 2" />
+                    <img src={getSummonerSpell(match.info.participants, 2)} alt="Summoner Spell 2" />
                   </div>
                 </div>
                 <div className="gamelist__spells-runes-wrapper">
