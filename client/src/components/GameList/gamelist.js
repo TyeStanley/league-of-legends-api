@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import './gamelist.css';
-import randomItem from '../../assets/img/item/1043.png';
 
 export default function Gamelist({ region, puuid }) {
   const [matches, setMatches] = useState([])
@@ -202,7 +201,7 @@ export default function Gamelist({ region, puuid }) {
         runeName = 'Precision/PressTheAttack/PressTheAttack'
         break
       case 8008:
-        runeName = 'Precision/LethalTempo/LethalTempo'
+        runeName = 'Precision/LethalTempo/LethalTempoTemp'
         break
       case 8021:
         runeName = 'Precision/FleetFootwork/FleetFootwork'
@@ -279,6 +278,15 @@ export default function Gamelist({ region, puuid }) {
     return `CS ${creepScore} (${rounded})`
   }
 
+  function getItems(participants, num){ 
+    const currentPlayer = participants.find(player => player.puuid === puuid)
+    let item = currentPlayer[`item${num}`]
+
+    if (item === 0) item = 7050
+
+    return require(`../../assets/img/item/${item}.png`)
+  }
+
   return (
     <section className="gamelist">
       <div className="gamelist__title">GAMES PLAYED</div>
@@ -331,27 +339,27 @@ export default function Gamelist({ region, puuid }) {
             <div className="gamelist__items-built">
               <div className="gamelist__built-item-container">
                 <div className="gamelist__built-item">
-                  <img src={randomItem} alt="league item slot 1" />
+                  <img src={getItems(match.info.participants, 0)} alt="league item slot 0" />
                 </div>
                 <div className="gamelist__built-item">
-                  <img src={randomItem} alt="league item slot 2" />
+                  <img src={getItems(match.info.participants, 1)} alt="league item slot 1" />
                 </div>
                 <div className="gamelist__built-item">
-                  <img src={randomItem} alt="league item slot 3" />
+                  <img src={getItems(match.info.participants, 2)} alt="league item slot 2" />
                 </div>
                 <div className="gamelist__built-item">
-                  <img src={randomItem} alt="league item slot 4" />
+                  <img src={getItems(match.info.participants, 6)} alt="league item slot 3" />
                 </div>
               </div>
               <div className="gamelist__built-item-container">
                 <div className="gamelist__built-item">
-                  <img src={randomItem} alt="league item slot 5" />
+                  <img src={getItems(match.info.participants, 3)} alt="league item slot 4" />
                 </div>
                 <div className="gamelist__built-item">
-                  <img src={randomItem} alt="league item slot 6" />
+                  <img src={getItems(match.info.participants, 4)} alt="league item slot 5" />
                 </div>
                 <div className="gamelist__built-item">
-                  <img src={randomItem} alt="league item slot 7" />
+                  <img src={getItems(match.info.participants, 5)} alt="league item slot 6" />
                 </div>
               </div>
             </div>
@@ -402,7 +410,7 @@ export default function Gamelist({ region, puuid }) {
                 </div>
               </div>
             </div> */}
-            <div className="gamelist_tab"></div>
+            {/* <div className="gamelist_tab"></div> */}
           </div>
         </>)
       })}
