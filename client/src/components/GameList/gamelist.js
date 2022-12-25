@@ -236,6 +236,49 @@ export default function Gamelist({ region, puuid }) {
     return require(`../../assets/img/perk-images/Styles/${runeName}.png`)
   }
 
+  function getKda(participants, kda) {
+    const currentPlayer = participants.find(player => player.puuid === puuid)
+
+    if (kda === 'kills') {
+      return currentPlayer.kills
+    } else if (kda === 'deaths') {
+      return currentPlayer.deaths
+    } else if (kda === 'assists') {
+      return currentPlayer.assists
+    }
+  }
+
+  function getAverageKda(participants) {
+    const currentPlayer = participants.find(player => player.puuid === puuid)
+
+    const kills = currentPlayer.kills
+    const deaths = currentPlayer.deaths
+    const assists = currentPlayer.assists
+
+    if (deaths === 0) return 'Perfect'
+
+    const averageKDA = ((kills + assists) / deaths).toFixed(2)
+    
+    return averageKDA
+  }
+
+  function getCreepScore(gameInfo) {
+    const currentPlayer = gameInfo.participants.find(player => player.puuid === puuid)
+
+    const gameLengthMinutes = (gameInfo.gameEndTimestamp - gameInfo.gameStartTimestamp) / 1000 / 60
+
+    const minionKills = currentPlayer.totalMinionsKilled
+    const monsterKills = currentPlayer.neutralMinionsKilled
+
+    const creepScore = minionKills + monsterKills
+
+    const averagePerMinute = creepScore / gameLengthMinutes
+
+    const rounded = Math.round(averagePerMinute * 10) / 10 
+
+    return `CS ${creepScore} (${rounded})`
+  }
+
   return (
     <section className="gamelist">
       <div className="gamelist__title">GAMES PLAYED</div>
@@ -273,9 +316,17 @@ export default function Gamelist({ region, puuid }) {
               </div>
             </div>
             <div className="gamelist__kda-statistics">
-              <div>10/<span className="red">0</span>/31</div>
-              <div>3.50 KDA</div>
-              <div>45 CS (2.3)</div>
+              <div>
+                {getKda(match.info.participants, 'kills')}
+                /
+                <span className="red">
+                  {getKda(match.info.participants, 'deaths')}
+                </span>
+                /
+                {getKda(match.info.participants, 'assists')}
+              </div>
+              <div>{getAverageKda(match.info.participants)} KDA</div>
+              <div>{getCreepScore(match.info)}</div>
             </div>
             <div className="gamelist__items-built">
               <div className="gamelist__built-item-container">
