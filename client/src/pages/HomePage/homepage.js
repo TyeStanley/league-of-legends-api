@@ -1,31 +1,24 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './homepage.css';
-import PlayerStatsPage from '../SummonerPage/summonerpage.js';
+import { useNavigate } from 'react-router-dom'
 
 export default function Homepage() {
-  const [region, setRegion] = useState('');
-  const [summonerName, setSummonerName] = useState('');
-  const [shown, setShown] = useState(false);
+  let navigate = useNavigate();
   
   function handleFormSubmit(e) {
     if (!e.target.matches('.homepage__submit-btn')) return;
     e.preventDefault();
+    e.stopPropagation();
 
     // get summoner name input
     const currentSummonerName = document.querySelector('.homepage__summoner-name-input').value
     
-    // assign the text value from select to variable called region
+    // get current region
     const selection = document.querySelector('.homepage__region-select');
     const currentRegion = selection.options[selection.selectedIndex].value;
 
-    // Sets the value of the region and name
-    setRegion(currentRegion);
-    setSummonerName(currentSummonerName);
-    // Shown is set to true to render PlayerStatsPage and to pass off region and name values
-    setShown(true);
+    navigate('/player', { state: { region: currentRegion, summonerName: currentSummonerName }});
   }
-
-  if (shown) return <PlayerStatsPage region={region} summonerName={summonerName} />
 
   return (
     <div className="homepage">
@@ -54,7 +47,9 @@ export default function Homepage() {
                 <option value="la1">LAN</option>
                 <option value="la2">LAS</option>
               </select>
-              <button className="btn homepage__submit-btn">Enter</button>
+              <button type="submit" className="btn homepage__submit-btn">
+                Enter
+              </button>
             </div>
           </form>
         </div>

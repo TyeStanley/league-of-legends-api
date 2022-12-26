@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react'
 import './navmenu.css'
+import { Link } from 'react-router-dom'
 
-export default function Navmenu({ open }) {
+export default function Navmenu({ open, setOpen }) {
 
   useEffect(() => {
     const menu = document.querySelector('.nav-menu');
@@ -26,17 +27,19 @@ export default function Navmenu({ open }) {
     }
   }, [open])
 
+  function setToClose(e) {
+    if (!e.target.matches('.aLink')) return
+    setOpen(false)
+  }
+
   return (
-    <div className="nav-menu">
-      <a href="/">
+    <div className="nav-menu" onClick={setToClose}>
+      <Link className="aLink" to="/">
         Home
-      </a>
-      <a href="/player">
+      </Link>
+      <Link className="aLink" to="/player">
         Player
-      </a>
-      <a href="/champions">
-        Champions
-      </a>
+      </Link>
     </div>
   )
 }

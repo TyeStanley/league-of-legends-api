@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom'
 import './summonerpage.css';
 import RankedSolo from '../../components/RankedSolo/rankedsolo.js';
 import GameList from '../../components/GameList/gamelist.js';
 
-export default function Summonerpage(props) {
+export default function Summonerpage() {
+  const { state } = useLocation()
+  const [isLoading, setIsLoading] = useState(true);
   const [account, setAccount] = useState({
     accountId: '',
     id: '',
@@ -14,22 +17,18 @@ export default function Summonerpage(props) {
     summonerLevel: 0
   });
 
-  const [isLoading, setIsLoading] = useState(true);
-  
   // gather and sets information collected for region and name to use in a fetch to store fetch data in account state
   const [currentInitInfo, setInitInfo] = useState({ region: '', name: '' });
 
-  // const profileIconLink = `http://ddragon.leagueoflegends.com/cdn/12.22.1/img/profileicon/${account.profileIconId}.png`;
   const profileIconLink = require(`../../assets/img/profileicon/${account.profileIconId}.png`);
  
-  // useEffect for fetching using props from homepage input information (1 time use)
+  // useEffect for fetching using location from homepage input information (1 time use)
   useEffect(() => {
-    if (props.length !== 0) setInitInfo({ region: props.region, name: props.summonerName });
+    if (state !== null) setInitInfo({ region: state.region, name: state.summonerName})
   }, []);
 
   // Gathers the input for name and region when on the summoner page
   useEffect(() => {
-    setIsLoading(true)
     apiInitialCall(currentInitInfo.region, currentInitInfo.name);
   }, [currentInitInfo])
 
@@ -86,7 +85,7 @@ export default function Summonerpage(props) {
           <span className="summonerpage__search-span">Search</span>
           <input className="input summonerpage__search-input" type="text" />
         </div>
-        <button 
+        <button
           className="btn summonerpage__search-btn"
           onClick={handleInputSubmit}
         >
@@ -135,11 +134,11 @@ export default function Summonerpage(props) {
         </div>
         <div className="summonerpage__name-and-btn-wrapper">
           <h3 className="summonerpage__name">{account.name}</h3>
-          <button className="btn summonerpage__update-btn">Update</button>
+          {/* <button className="btn summonerpage__update-btn">Update</button> */}
         </div>
       </section>
       <RankedSolo summonerId={account.id} region={currentInitInfo.region} />
-      <GameList region={currentInitInfo.region} puuid={account.puuid} />
+      <GameList currentInitInfo={currentInitInfo} puuid={account.puuid} />
     </div>
   )
 }

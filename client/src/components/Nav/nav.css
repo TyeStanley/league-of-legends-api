@@ -56,6 +56,11 @@
   transform: rotate(-45deg);
 }
 
+.nav__link button a {
+  color: white;
+  text-decoration: none;
+}
+
 /* desktop */
 @media (min-width: 768px) {
   .mobile-nav {

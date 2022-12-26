@@ -29,7 +29,10 @@ export default function Rankedsolo({ summonerId, region }) {
       .then(response => response.json())
       .then(data => {
         // if account is unranked it will not return any object in the array
-        if (data.length !== 0) setRankedStats(data);
+        if (data.length !== 0) {
+          setRankedStats(data);
+          setIsUnranked(false);
+        }
         if (data.length === 0) setIsUnranked(true);
       })
       .catch(error => { console.error('Error fetching data: ', error) })

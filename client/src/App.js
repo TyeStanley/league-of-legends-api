@@ -9,9 +9,9 @@ import SummonerPage from './pages/SummonerPage/summonerpage.js';
 function App() {
   return (
     <>
-      <Nav />
       <main>
         <Router>
+          <Nav />
           <Routes>
             <Route
               path="/"

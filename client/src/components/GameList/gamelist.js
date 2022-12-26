@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import './gamelist.css';
 
-export default function Gamelist({ region, puuid }) {
+export default function Gamelist({ currentInitInfo, puuid }) {
   const [matches, setMatches] = useState([])
-  console.log(matches)
 
   // gets 20 matches and sets it to matches
   useEffect(() => {
     let route = '';
     
-    switch (region) {
+    switch (currentInitInfo.region) {
       case 'na1':
       case 'br1':
       case 'la1':
@@ -33,7 +32,7 @@ export default function Gamelist({ region, puuid }) {
       .then(response => response.json())
       .then(data => setMatches(data))
       .catch(error => console.error(error))
-  }, [puuid])
+  }, [puuid, currentInitInfo])
 
   // Gives the time on how long ago a game was played
   function gameEndedAgo(time) {
@@ -60,9 +59,8 @@ export default function Gamelist({ region, puuid }) {
     }
   }
 
-  function winOrLose(participants) {
-    const currentPlayer = participants.find(player => player.puuid === puuid)
-    if (currentPlayer.win) { return 'Victory' } 
+  function winOrLose(player) {
+    if (player.win === true) { return 'Victory' } 
     else { return 'Defeat' }
   }
 
@@ -74,22 +72,16 @@ export default function Gamelist({ region, puuid }) {
     return `${lengthInMinutes}m ${lengthInSeconds}s`
   }
 
-  function findChampionIcon(participants) {
-    const currentPlayer = participants.find(player => player.puuid === puuid)
-    const playedChampion = currentPlayer.championName;
-    
-    return require(`../../assets/img/champion/${playedChampion}.png`)
+  function findChampionIcon(player) {
+    return require(`../../assets/img/champion/${player.championName}.png`)
   }
 
-  function findChampionLevel(participants) {
-    const currentPlayer = participants.find(player => player.puuid === puuid)
-
-    return currentPlayer.champLevel
+  function findChampionLevel(player) {
+    return player.champLevel
   }
 
-  function getSummonerSpell(participants, num) {
-    const currentPlayer = participants.find(player => player.puuid === puuid)
-    const summonerSpellId = currentPlayer[`summoner${num}Id`]
+  function getSummonerSpell(player, num) {
+    const summonerSpellId = player[`summoner${num}Id`]
     
     const summonerSpellName = returnSpellName(summonerSpellId)
 
@@ -148,9 +140,8 @@ export default function Gamelist({ region, puuid }) {
     return summonerName
   }
 
-  function getRunes(participants, num) {
-    const currentPlayer = participants.find(player => player.puuid === puuid)
-    const runes = currentPlayer.perks.styles[num]
+  function getRunes(player, num) {
+    const runes = player.perks.styles[num]
     let runeId = ''
 
     if (num === 0) {
@@ -235,24 +226,20 @@ export default function Gamelist({ region, puuid }) {
     return require(`../../assets/img/perk-images/Styles/${runeName}.png`)
   }
 
-  function getKda(participants, kda) {
-    const currentPlayer = participants.find(player => player.puuid === puuid)
-
+  function getKda(player, kda) {
     if (kda === 'kills') {
-      return currentPlayer.kills
+      return player.kills
     } else if (kda === 'deaths') {
-      return currentPlayer.deaths
+      return player.deaths
     } else if (kda === 'assists') {
-      return currentPlayer.assists
+      return player.assists
     }
   }
 
-  function getAverageKda(participants) {
-    const currentPlayer = participants.find(player => player.puuid === puuid)
-
-    const kills = currentPlayer.kills
-    const deaths = currentPlayer.deaths
-    const assists = currentPlayer.assists
+  function getAverageKda(player) {
+    const kills = player.kills
+    const deaths = player.deaths
+    const assists = player.assists
 
     if (deaths === 0) return 'Perfect'
 
@@ -278,9 +265,8 @@ export default function Gamelist({ region, puuid }) {
     return `CS ${creepScore} (${rounded})`
   }
 
-  function getItems(participants, num){ 
-    const currentPlayer = participants.find(player => player.puuid === puuid)
-    let item = currentPlayer[`item${num}`]
+  function getItems(player, num) { 
+    let item = player[`item${num}`]
 
     if (item === 0) item = 7050
 
@@ -291,75 +277,79 @@ export default function Gamelist({ region, puuid }) {
     <section className="gamelist">
       <div className="gamelist__title">GAMES PLAYED</div>
       {matches.map(match => {
+
+        const player = match.info.participants.find(player => player.puuid === puuid)
+        if (!player) return null
+        
         return (<>
           <div className="gamelist__container" key={match.info.gameEndTimeStamp}>
             <div className="gamelist__game-info">
               <div>{match.info.gameMode}</div>
               <div>{gameEndedAgo(match.info.gameEndTimestamp)}</div>
-              <div>{winOrLose(match.info.participants)}</div>
+              <div>{winOrLose(player)}</div>
               <div>{gameDuration(match.info.gameStartTimestamp, match.info.gameEndTimestamp)}</div>
             </div>
             <div className="gamelist__champion-icon-spells-runes-container">
               <div className="gamelist__champion-icon">
-                <img src={findChampionIcon(match.info.participants)} alt="Champion Icon" />
+                <img src={findChampionIcon(player)} alt="Champion Icon" />
                 <div className="gamelist__champion-icon-level">{findChampionLevel(match.info.participants)}</div>
               </div>
               <div className="gamelist__spells-runes">
                 <div className="gamelist__spells-runes-wrapper">
                   <div className="gamelist__summoner-spell-rune-icon">
-                    <img src={getSummonerSpell(match.info.participants, 1)} alt="Summoner Spell 1" />
+                    <img src={getSummonerSpell(player, 1)} alt="Summoner Spell 1" />
                   </div>
                   <div className="gamelist__summoner-spell-rune-icon">
-                    <img src={getSummonerSpell(match.info.participants, 2)} alt="Summoner Spell 2" />
+                    <img src={getSummonerSpell(player, 2)} alt="Summoner Spell 2" />
                   </div>
                 </div>
                 <div className="gamelist__spells-runes-wrapper">
                   <div className="gamelist__summoner-spell-rune-icon">
-                    <img src={getRunes(match.info.participants, 0)} alt="Rune 1" />
+                    <img src={getRunes(player, 0)} alt="Rune 1" />
                   </div>
                   <div className="gamelist__summoner-spell-rune-icon">
-                    <img src={getRunes(match.info.participants, 1)} alt="Rune 2" />
+                    <img src={getRunes(player, 1)} alt="Rune 2" />
                   </div>
                 </div>
               </div>
             </div>
             <div className="gamelist__kda-statistics">
               <div>
-                {getKda(match.info.participants, 'kills')}
+                {getKda(player, 'kills')}
                 /
                 <span className="red">
-                  {getKda(match.info.participants, 'deaths')}
+                  {getKda(player, 'deaths')}
                 </span>
                 /
-                {getKda(match.info.participants, 'assists')}
+                {getKda(player, 'assists')}
               </div>
-              <div>{getAverageKda(match.info.participants)} KDA</div>
+              <div>{getAverageKda(player)} KDA</div>
               <div>{getCreepScore(match.info)}</div>
             </div>
             <div className="gamelist__items-built">
               <div className="gamelist__built-item-container">
                 <div className="gamelist__built-item">
-                  <img src={getItems(match.info.participants, 0)} alt="league item slot 0" />
+                  <img src={getItems(player, 0)} alt="league item slot 0" />
                 </div>
                 <div className="gamelist__built-item">
-                  <img src={getItems(match.info.participants, 1)} alt="league item slot 1" />
+                  <img src={getItems(player, 1)} alt="league item slot 1" />
                 </div>
                 <div className="gamelist__built-item">
-                  <img src={getItems(match.info.participants, 2)} alt="league item slot 2" />
+                  <img src={getItems(player, 2)} alt="league item slot 2" />
                 </div>
                 <div className="gamelist__built-item">
-                  <img src={getItems(match.info.participants, 6)} alt="league item slot 3" />
+                  <img src={getItems(player, 6)} alt="league item slot 3" />
                 </div>
               </div>
               <div className="gamelist__built-item-container">
                 <div className="gamelist__built-item">
-                  <img src={getItems(match.info.participants, 3)} alt="league item slot 4" />
+                  <img src={getItems(player, 3)} alt="league item slot 4" />
                 </div>
                 <div className="gamelist__built-item">
-                  <img src={getItems(match.info.participants, 4)} alt="league item slot 5" />
+                  <img src={getItems(player, 4)} alt="league item slot 5" />
                 </div>
                 <div className="gamelist__built-item">
-                  <img src={getItems(match.info.participants, 5)} alt="league item slot 6" />
+                  <img src={getItems(player, 5)} alt="league item slot 6" />
                 </div>
               </div>
             </div>
