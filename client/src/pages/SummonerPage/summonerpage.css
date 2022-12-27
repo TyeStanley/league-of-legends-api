@@ -1,6 +1,8 @@
 .summonerpage {
   color: white;
   background-color: #31313C;
+  max-width: 700px;
+  margin: 0 auto;
 }
 
 .summonerpage.isLoading {
@@ -25,6 +27,8 @@
   flex-direction: column;
   padding: .3rem;
   padding-left: 0;
+  margin: 0 auto;
+  width: 200px;
 }
 
 /* .summonerpage__region-span {} */
@@ -39,7 +43,7 @@
   flex-direction: column;
   border-left: 1px solid white;
   padding: .3rem;
-  width: 125px;
+  max-width: 350px;
 }
 
 /* .summonerpage__search-span {} */
@@ -50,6 +54,7 @@
   border: none;
   background-color: white;
   border-radius: .3rem;
+  width: 100%;
 }
 
 .summonerpage__search-input:hover,
