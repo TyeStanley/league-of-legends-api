@@ -1,23 +1,27 @@
-import React from 'react';
-import './homepage.css';
-import { useNavigate } from 'react-router-dom'
+import React from "react";
+import "./homepage.css";
+import { useNavigate } from "react-router-dom";
 
 export default function Homepage() {
   let navigate = useNavigate();
-  
+
   function handleFormSubmit(e) {
-    if (!e.target.matches('.homepage__submit-btn')) return;
+    if (!e.target.matches(".homepage__submit-btn")) return;
     e.preventDefault();
     e.stopPropagation();
 
     // get summoner name input
-    const currentSummonerName = document.querySelector('.homepage__summoner-name-input').value
-    
+    const currentSummonerName = document.querySelector(
+      ".homepage__summoner-name-input"
+    ).value;
+
     // get current region
-    const selection = document.querySelector('.homepage__region-select');
+    const selection = document.querySelector(".homepage__region-select");
     const currentRegion = selection.options[selection.selectedIndex].value;
 
-    navigate('/player', { state: { region: currentRegion, summonerName: currentSummonerName }});
+    navigate("/player", {
+      state: { region: currentRegion, summonerName: currentSummonerName }
+    });
   }
 
   return (
@@ -47,7 +51,10 @@ export default function Homepage() {
                 <option value="la1">LAN</option>
                 <option value="la2">LAS</option>
               </select>
-              <button type="submit" className="btn homepage__submit-btn">
+              <button
+                type="submit"
+                className="btn homepage__submit-btn"
+              >
                 Enter
               </button>
             </div>
@@ -55,5 +62,5 @@ export default function Homepage() {
         </div>
       </section>
     </div>
-  )
+  );
 }
